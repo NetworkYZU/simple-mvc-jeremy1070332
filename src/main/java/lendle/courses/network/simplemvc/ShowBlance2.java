@@ -31,19 +31,19 @@ public class ShowBlance2 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{ 
-           String id=request.getParameter(("id");
-           BankCustomer bankcustomer=BankCustomer.getCustomer(id);
+           String id=request.getParameter("id");
+           BankCustomer bankCustomer=BankCustomer.getCustomer(id);
            if(bankCustomer==null){
-               request.getRequestDispatcher("/WEB-INF/bank-account/UnknownCustomer.jsp").forward(request.response);
+               request.getRequestDispatcher("/WEB-INF/bank-account/UnknownCustomer.jsp").forward(request,response);
            }else{
            request.setAttribute("customer",bankCustomer);
            if(bankCustomer.getBalance()<0){
-               request.getRequestDispatcher("/WEB-INF/bank-account/NegativeBalance.jsp")
+               request.getRequestDispatcher("/WEB-INF/bank-account/NegativeBalance.jsp");
            }
            else if (bankCustomer.getBalance()>10000){
-               request.getRequestDispatcher("/WEB-INF/bank-account/HighBalance.jsp").forward(request.response);
+               request.getRequestDispatcher("/WEB-INF/bank-account/HighBalance.jsp").forward(request,response);
            }else{
-               request.getRequestDispatcher("/WEB-INF/bank-account/NormalBalance.jsp").forward(request.response);
+               request.getRequestDispatcher("/WEB-INF/bank-account/NormalBalance.jsp").forward(request,response);
                
            }
            }
